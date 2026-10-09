@@ -1,0 +1,26 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.datagleaner/data-gleaner-mcp",
+  "title": "Data Gleaner",
+  "description": "Website contacts, Google Hotels prices, Weibo, Bilibili and sitemap URLs as pay-per-result tools.",
+  "version": "1.0.0",
+  "websiteUrl": "https://apify.com/datagleaner",
+  "repository": {
+    "url": "https://github.com/datagleaner/data-gleaner-mcp",
+    "source": "github"
+  },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://mcp.apify.com/?tools=datagleaner/website-contact-details-scraper,datagleaner/google-hotels-scraper,datagleaner/weibo-scraper,datagleaner/bilibili-scraper,datagleaner/sitemap-extractor",
+      "headers": [
+        {
+          "name": "Authorization",
+          "description": "Optional when your client supports OAuth (it opens an Apify sign-in). Otherwise 'Bearer <your Apify API token>' from console.apify.com/settings/integrations.",
+          "isRequired": false,
+          "isSecret": true
+        }
+      ]
+    }
+  ]
+}
