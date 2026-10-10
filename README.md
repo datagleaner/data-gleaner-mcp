@@ -1,6 +1,6 @@
 # Data Gleaner MCP server
 
-Five web data tools for AI agents, served as one remote MCP server: website contact details, Google Hotels prices, Weibo posts, Bilibili videos and comments, and sitemap URLs. You pay per result returned, nothing to install and nothing to host.
+Ten web data tools for AI agents, served as one remote MCP server: website contact details, Google Hotels prices, Weibo posts, Bilibili videos and comments, sitemap URLs, YouTube channel emails, app developer emails, company team pages, Shopify agency contacts and researcher emails. You pay per result returned, nothing to install and nothing to host.
 
 The tools are [Data Gleaner](https://apify.com/datagleaner) Actors on Apify, served through Apify's official hosted MCP server at `mcp.apify.com`. This repository holds the connection configs and the registry metadata; there is no code to run.
 
@@ -9,7 +9,7 @@ The tools are [Data Gleaner](https://apify.com/datagleaner) Actors on Apify, ser
 One URL exposes only the Data Gleaner tools:
 
 ```
-https://mcp.apify.com/?tools=datagleaner/website-contact-details-scraper,datagleaner/google-hotels-scraper,datagleaner/weibo-scraper,datagleaner/bilibili-scraper,datagleaner/sitemap-extractor
+https://mcp.apify.com/?tools=datagleaner/website-contact-details-scraper,datagleaner/google-hotels-scraper,datagleaner/weibo-scraper,datagleaner/bilibili-scraper,datagleaner/sitemap-extractor,datagleaner/youtube-channel-contacts,datagleaner/app-developer-email-finder,datagleaner/team-page-contacts,datagleaner/shopify-partner-contacts,datagleaner/researcher-email-finder
 ```
 
 Two ways to sign in:
@@ -24,7 +24,7 @@ Want only one tool? Keep just that Actor in the `tools=` list, for example `http
 ### Claude Code
 
 ```bash
-claude mcp add --transport http data-gleaner "https://mcp.apify.com/?tools=datagleaner/website-contact-details-scraper,datagleaner/google-hotels-scraper,datagleaner/weibo-scraper,datagleaner/bilibili-scraper,datagleaner/sitemap-extractor"
+claude mcp add --transport http data-gleaner "https://mcp.apify.com/?tools=datagleaner/website-contact-details-scraper,datagleaner/google-hotels-scraper,datagleaner/weibo-scraper,datagleaner/bilibili-scraper,datagleaner/sitemap-extractor,datagleaner/youtube-channel-contacts,datagleaner/app-developer-email-finder,datagleaner/team-page-contacts,datagleaner/shopify-partner-contacts,datagleaner/researcher-email-finder"
 ```
 
 With a token instead of OAuth, add `--header "Authorization: Bearer $APIFY_TOKEN"`.
@@ -43,7 +43,7 @@ To use a token instead, put this in `claude_desktop_config.json` (it runs the `m
       "args": [
         "-y",
         "mcp-remote",
-        "https://mcp.apify.com/?tools=datagleaner/website-contact-details-scraper,datagleaner/google-hotels-scraper,datagleaner/weibo-scraper,datagleaner/bilibili-scraper,datagleaner/sitemap-extractor",
+        "https://mcp.apify.com/?tools=datagleaner/website-contact-details-scraper,datagleaner/google-hotels-scraper,datagleaner/weibo-scraper,datagleaner/bilibili-scraper,datagleaner/sitemap-extractor,datagleaner/youtube-channel-contacts,datagleaner/app-developer-email-finder,datagleaner/team-page-contacts,datagleaner/shopify-partner-contacts,datagleaner/researcher-email-finder",
         "--header",
         "Authorization:${AUTH_HEADER}"
       ],
@@ -61,7 +61,7 @@ To use a token instead, put this in `claude_desktop_config.json` (it runs the `m
 {
   "mcpServers": {
     "data-gleaner": {
-      "url": "https://mcp.apify.com/?tools=datagleaner/website-contact-details-scraper,datagleaner/google-hotels-scraper,datagleaner/weibo-scraper,datagleaner/bilibili-scraper,datagleaner/sitemap-extractor"
+      "url": "https://mcp.apify.com/?tools=datagleaner/website-contact-details-scraper,datagleaner/google-hotels-scraper,datagleaner/weibo-scraper,datagleaner/bilibili-scraper,datagleaner/sitemap-extractor,datagleaner/youtube-channel-contacts,datagleaner/app-developer-email-finder,datagleaner/team-page-contacts,datagleaner/shopify-partner-contacts,datagleaner/researcher-email-finder"
     }
   }
 }
@@ -78,7 +78,7 @@ For a token instead of OAuth, add `"headers": { "Authorization": "Bearer ${env:A
   "servers": {
     "data-gleaner": {
       "type": "http",
-      "url": "https://mcp.apify.com/?tools=datagleaner/website-contact-details-scraper,datagleaner/google-hotels-scraper,datagleaner/weibo-scraper,datagleaner/bilibili-scraper,datagleaner/sitemap-extractor",
+      "url": "https://mcp.apify.com/?tools=datagleaner/website-contact-details-scraper,datagleaner/google-hotels-scraper,datagleaner/weibo-scraper,datagleaner/bilibili-scraper,datagleaner/sitemap-extractor,datagleaner/youtube-channel-contacts,datagleaner/app-developer-email-finder,datagleaner/team-page-contacts,datagleaner/shopify-partner-contacts,datagleaner/researcher-email-finder",
       "headers": { "Authorization": "Bearer ${input:apify-token}" }
     }
   },
@@ -96,15 +96,20 @@ Any client that speaks Streamable HTTP takes the same URL: Windsurf, Cline, Chat
 
 ## Tools
 
-Each Actor is one tool, named like `datagleaner--google-hotels-scraper`. Apify's server also adds its helper tools for reading results (`get-actor-run`, `get-dataset-items`, `get-key-value-store-record`, `abort-actor-run`). All five Actors are plain HTTP (no browser), need no login to the target site, and charge only for results returned.
+Each Actor is one tool, named like `datagleaner--google-hotels-scraper`. Apify's server also adds its helper tools for reading results (`get-actor-run`, `get-dataset-items`, `get-key-value-store-record`, `abort-actor-run`). None of the ten needs a login to the target site, and all charge only for results returned.
 
 | Tool (Actor) | What it returns | Price |
 | --- | --- | --- |
-| [Website Contact Details & Email Scraper](https://apify.com/datagleaner/website-contact-details-scraper) | Emails, E.164 phone numbers, social profiles, contact forms and addresses from company websites, each with its source page | $4 per 1,000 websites with contacts found; sites with nothing found are free |
+| [Company Contact Details & Website Email Finder](https://apify.com/datagleaner/website-contact-details-scraper) | Emails, E.164 phone numbers, social profiles, contact forms and addresses from company websites, each with its source page | $2 per 1,000 websites where an email is found; every other site is free |
 | [Google Hotels Scraper](https://apify.com/datagleaner/google-hotels-scraper) | Hotel prices for exact dates: lowest rate, each booking site's price and link (such as Booking.com, Agoda, Trip.com), ratings, amenities, coordinates | $3 per 1,000 hotels |
 | [Weibo Scraper](https://apify.com/datagleaner/weibo-scraper) | Public Weibo posts by keyword or user: full text, dates, likes, reposts, comments, media, poster region, author | $3 per 1,000 posts |
 | [Bilibili Scraper](https://apify.com/datagleaner/bilibili-scraper) | Bilibili video search and details (views, likes, coins, tags, uploader), comments with IP location, danmaku | $8 per 1,000 videos, $2 per 1,000 comments, $0.50 per 1,000 danmaku |
 | [Sitemap URL Extractor](https://apify.com/datagleaner/sitemap-extractor) | Every page URL of a site from its sitemaps, with lastmod, changefreq and priority | $0.20 per 1,000 URLs |
+| [YouTube Channel Contacts](https://apify.com/datagleaner/youtube-channel-contacts) | Public emails of YouTube channels from the description, About links, link-in-bio page and creator website, plus socials, subscribers and country; search by channel or niche keyword | $0.015 per channel with an email; channels without one are free |
+| [App Developer Email Finder](https://apify.com/datagleaner/app-developer-email-finder) | Developer email, website, address, phone and privacy policy of apps on Google Play, the App Store, Steam and the Chrome Web Store | $0.0015 per app with an email; apps without one are free |
+| [Company Leadership & Team Page Scraper](https://apify.com/datagleaner/team-page-contacts) | Named people from a company's own team, about, leadership and Impressum pages, with title, seniority, LinkedIn and published email; never guesses emails | $0.002 per person |
+| [Shopify Partner & Agency Contacts](https://apify.com/datagleaner/shopify-partner-contacts) | Agencies and experts from the Shopify Partner Directory by country and service, with public email, phone, website, rating and tier | $0.005 per partner with a contact; others are free |
+| [Researcher Email Finder](https://apify.com/datagleaner/researcher-email-finder) | Researchers by topic with the email they published in PubMed papers, plus affiliation, ORCID and recent papers | $0.005 per researcher with an email |
 
 Each Actor also runs with no input, returning a small built-in example of at most five results, so an agent can see the output shape for a few cents at most.
 
