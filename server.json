@@ -2,7 +2,7 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.datagleaner/data-gleaner-mcp",
   "title": "Data Gleaner",
-  "description": "Website, YouTube, app developer, team page, Shopify agency and researcher contacts, plus Google Hotels prices, Weibo, Bilibili and sitemap URLs as pay-per-result tools.",
+  "description": "Pay-per-result web data tools: company and YouTube contacts, hotel prices, Weibo and Bilibili.",
   "version": "1.0.0",
   "websiteUrl": "https://apify.com/datagleaner",
   "repository": {
